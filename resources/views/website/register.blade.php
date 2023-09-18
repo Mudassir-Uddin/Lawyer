@@ -8,11 +8,11 @@
         <!-- User insert Start -->
         <div class="container-fluid">
             <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-                <div class="col-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
+                <div class="col-12 col-sm-10 col-md-7 col-lg-7 col-xl-7">
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-around mb-3">
                             <a href="index.html" class="">
-                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>lawyers_website</h3>
+                                <h3 style="color:#f0bf6a;"><i class="fa fa-user-edit me-2"></i>lawyers_website</h3>
                             </a>
                             <h3>Create an Account</h3>
                         </div>
@@ -62,6 +62,7 @@
                                 <input type="checkbox" id="chkLayer" name="checks" value="1" />
                                 Is Lawyer !
                             </label>
+                            
                             <hr />
                             <div id="div" style="display:none;">
                                 <div class="form-floating mb-3">
@@ -102,7 +103,8 @@
                                 @enderror
                             </div> --}}
 
-                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Register</button>
+                            <button type="submit" style="background-color:#c9953c; border-color:#aa9166;" class="btn btn-primary py-3 w-100 mb-4 fs-5">Register</button>
+                            <a href="{{url('/login')}}"  style="color:#f0bf6a;">Already have an account? Login :)</a>
                         </form>
                     </div>
                 </div>

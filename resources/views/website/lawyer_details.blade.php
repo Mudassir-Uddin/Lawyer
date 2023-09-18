@@ -26,10 +26,11 @@
             <div class="row">
                 <div class="col-lg-6 col-md-8">
                     <div class="service-item">
-                        <div class="service-icon">
-                            <i class="fa fa-landmark"></i>
-                            <p>img : {{$users[0]->img}}</p>
-                        </div>  
+                        
+                            {{-- <i class="fa fa-landmark"></i> --}}
+                            <img src="{{$users[0]->img}}" width="100%" height="400px" alt="">
+                            {{-- <p>img : </p> --}}
+                        
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-8">
@@ -40,8 +41,9 @@
                         </p>
                         <p>
                             {{$users[0]->email}}
-                        </p>
-                        <a class="btn" href="">Learn More</a>
+                        </p>    
+                        <br><br>
+                        <a class="btn" href="{{url('/Appoinment')}}/{{$users[0]->user_id}}">Appoinment</a>
                     </div>
                 </div>  
                 {{-- @foreach ($users as $item)

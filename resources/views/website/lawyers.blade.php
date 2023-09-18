@@ -23,7 +23,7 @@
             <div class="section-header">
                 <h2>Our Lawyers Studies</h2>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-12">
                     <ul id="portfolio-flters">
                         <li data-filter="*" class="filter-active">All</li>
@@ -32,7 +32,7 @@
                         <li data-filter=".third">Business</li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
             <div class="row portfolio-container">
                 @foreach ($users as $item)
                     <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item first">
@@ -44,7 +44,7 @@
                                 <a class="btn" href="{{ url('/lawyer_details') }}/{{ $item->user_id }}">
                                     <p> {{ $item->user_name }}</p>
                                     <a href="#"> {{ $item->email }}</a>
-                                    <span> {{ $item->address }}</span>
+                                    {{-- <span>{{ $item->address }}</span> --}}
                                 </a>
                             </figure>
                         </div>

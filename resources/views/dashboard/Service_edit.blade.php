@@ -10,7 +10,7 @@
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-between mb-3">
                             <a href="index.html" class="">
-                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>SSAT</h3>
+                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>lawyers_website</h3>
                             </a>
                             <h3>Category Edit</h3>
                         </div>
@@ -21,14 +21,14 @@
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="floatingText" value="{{$st->name}}"
                                     name="name" placeholder="jhondoe">
-                                <label for="floatingText">Username</label>
+                                <label for="floatingText">Service name</label>
                                 @error('name')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
 
                             </div>
                             <div class="mb-3">
-                                <label for="formFileLg" class="form-label">Student Image</label>
+                                <label for="formFileLg" class="form-label">Service Image</label>
                                 <input class="form-control form-control-lg bg-dark" name="img" id="formFileLg"
                                     type="file">
 

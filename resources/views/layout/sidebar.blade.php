@@ -63,78 +63,54 @@
 
 
                     <ul class="justify-content-end navbar nav">
-                      </ul>
+                    </ul>
 
                     <div class="ms-3">
-                        
+
                         @if (session()->has('email'))
-                        <h6 class="fw-bolder mb-0">{{session()->get('name')}}</h6>
-                        <a class="fw-bolder" hidden>{{session()->get('email')}}</a>
-                        {{-- <a href="{{url('/logout')}}" class="btn btn-danger">Logout</a> --}}
+                            <h6 class="fw-bolder mb-0">{{ session()->get('name') }}</h6>
+                            <a class="fw-bolder" hidden>{{ session()->get('email') }}</a>
                         @else
-                        <a href="{{url('/login')}}" class="my-2" style="font-size:25px;">Login</a>
-                        {{-- <a href="{{url('/register')}}" class="btn btn-primary my-2">Signup</a> --}}
+                            <a href="{{ url('/login') }}" class="my-2" style="font-size:25px;">Login</a>
                         @endif
-                        {{-- <h6 class="mb-0">Jhon Doe</h6> --}}
-                        
+
                         <span>Admin</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="Admindashboard" class="nav-item nav-link active"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>Lawyers</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="Services_index" class="dropdown-item">Lawyer List</a>
-                            <a href="Service_insert" class="dropdown-item">Lawyer Insert</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>Services</a>
+                                class="fa fa-th me-2"></i>Services</a>
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="Services_index" class="dropdown-item">Services List</a>
                             <a href="Service_insert" class="dropdown-item">Service Insert</a>
                         </div>
                     </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>Users</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="User_index" class="dropdown-item">Users List</a>
-                            <a href="Users_insert" class="dropdown-item">Users Insert</a>
-                        </div>
-                    </div>
-                    {{-- <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>Products Color</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Color List</a>
-                            <a href="typography.html" class="dropdown-item">Color Insert</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                                class="fa fa-laptop me-2"></i>Category</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Category List</a>
-                            <a href="typography.html" class="dropdown-item">Category Insert</a>
-                        </div>
-                    </div> --}}
-                    <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>User</a>
-                    <a href="table.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tables</a>
-                    <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
+
+                    <a href="{{ url('/dashboard/Lawyers/Sorting') }}/3" class="nav-item nav-link "><i
+                            class="fa fa-table me-2"></i>Lawyers</a>
+
+                    <a href="User_index" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>User</a>
+                    <a href="/" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Website</a>
+
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                                 class="far fa-file-alt me-2"></i>Pages</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="signin.html" class="dropdown-item">Sign In</a>
-                            <a href="signup.html" class="dropdown-item">Sign Up</a>
-                            <a href="404.html" class="dropdown-item">404 Error</a>
-                            <a href="blank.html" class="dropdown-item">Blank Page</a>
+                            <a href="#" class="dropdown-item">
+                                @if (session()->has('email'))
+                                    <span class="d-none d-lg-inline-flex">{{ session()->get('name') }}</span>
+                            </a>
+                            <a class="dropdown-item fw-bloder"
+                                style="font-size: 14px;">{{ session()->get('email') }}</a>
+                            <a href="{{ url('/logout') }}" class="dropdown-item">Log Out</a>
+                        @else
+                            <a href="{{ url('/login') }}" class="btn btn-success my-2">Login</a>
+                            <a href="{{ url('/register') }}" class="btn btn-primary my-2">Signup</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -227,30 +203,44 @@
                     </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" src="img/user.jpg" alt=""
-                                style="width: 40px; height: 40px;">
-
-
-                                @if (session()->has('email'))
-                                <span class="fw-bolder d-none d-lg-inline-flex">{{session()->get('name')}}</span>
+                            @php
                                 
-                            {{-- <span class="d-none d-lg-inline-flex">John Doe</span> --}}
+                                use App\Models\Lawyer;
+                                use App\Models\User;
+                                use App\Models\users;
+                                use Illuminate\Http\Request;
+                                use Illuminate\Support\Facades\DB;
+                                use Illuminate\Support\Facades\Hash;
+                                use Illuminate\Support\Facades\Session;
+                                $user = user::where('user_id', Session::get('id'))->first();
+                            @endphp
+                            @if ($user)
+                                <img class="rounded-circle me-lg-2" src="{{ $user->img }}" alt=""
+                                    style="width: 40px; height: 40px;">
+                            @endif
+
+                            @if (session()->has('email'))
+                                <span class="fw-bolder d-none d-lg-inline-flex">{{ session()->get('name') }}</span>
+
+                                {{-- <span class="d-none d-lg-inline-flex">John Doe</span> --}}
                         </a>
                         <div
                             class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
+                            {{-- <a href="#" class="dropdown-item">My Profile</a> --}}
                             {{-- <a href="{{ url('/update') }}/{{ $st->id }}"
                                 class="btn btn-warning">My Profile</a> --}}
-                            <a class="dropdown-item fw-bloder" style="font-size: 14px;">{{session()->get('email')}}</a>
+                            <a class="dropdown-item fw-bloder"
+                                style="font-size: 14px;">{{ session()->get('email') }}</a>
                             {{-- <a href="#" class="dropdown-item">Settings</a> --}}
-                            
-                            <a href="{{url('/logout')}}" class="dropdown-item">Log Out</a>
-                            {{-- <a href="#" class="dropdown-item">Log Out</a> --}}
+
+                            <a href="{{ url('/logout') }}" class="dropdown-item">Log Out</a>
+                            <a href="{{ url('/') }}" class="dropdown-item">Back To Home :)</a>
+
                         </div>
-                        @else
-                                <a href="{{url('/login')}}" class="btn btn-success my-2">Login</a>
-                                <a href="{{url('/register')}}" class="btn btn-primary my-2">Signup</a>
-                                @endif
+                    @else
+                        <a href="{{ url('/login') }}" class="btn btn-success my-2">Login</a>
+                        <a href="{{ url('/register') }}" class="btn btn-primary my-2">Signup</a>
+                        @endif
                     </div>
                 </div>
             </nav>

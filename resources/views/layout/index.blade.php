@@ -83,14 +83,17 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto">
                                 {{-- <li class="nav-item nav-link {{ request()->is('/Home') ? 'active' : '' }}"><a href="{{ route('home') }}" >Home</a></li> --}}
-                                <a href="{{url('/Home')}}" class="nav-item nav-link active">Home</a>
+                                <a href="{{ route('home') }}" class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
                                 @if ($userRole != 3)
-                                    <a href="{{url('/lawyers')}}" class="nav-item nav-link">lawyer</a>
+                                    <a href="{{ route('lawyers') }}" class="nav-item nav-link {{ request()->is('lawyers') ? 'active' : '' }}">lawyer</a>
                                 @endif
-                                @if ($userRole == 3)
-                                    <a href="{{url('/service')}}" class="nav-item nav-link">Appointments</a>
+                                @if ($userRole != 1)
+                                    <a href="{{ route('Appoinment_Details') }}" class="nav-item nav-link {{ request()->is('Appoinment_Details') ? 'active' : '' }}">Appointments</a>
+                                    {{-- <a href="{{ url('Appoinment_Details') }}" class="nav-item nav-link ">Appointments</a> --}}
                                 @endif
-                                <a href="{{url('/services')}}" class="nav-item nav-link">Services</a>
+                                
+
+                                <a href="{{ route('service') }}" class="nav-item nav-link {{ request()->is('services') ? 'active' : '' }}">Services</a>
                                 {{-- <a href="{{url('/portfolio')}}" class="nav-item nav-link">Case Studies</a> --}}
                                 {{-- <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -99,9 +102,9 @@
                                         <a href="{{url('/single')}}" class="dropdown-item">Single Page</a>
                                     </div>
                                 </div> --}}
-                                <a href="{{url('/about')}}" class="nav-item nav-link">About Us</a>
+                                <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About Us</a>
                                 {{-- <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About Us</a> --}}
-                                <a href="{{url('/contact')}}" class="nav-item nav-link">Contact Us</a>
+                                <a href="{{ route('contact') }}" class="nav-item nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact Us</a>
                                 
                                 {{-- <a href="{{url('/dashboard/Service_insert')}}" class="nav-item nav-link">Insert</a> --}}
                             </div>
@@ -112,11 +115,16 @@
                                 @endif
                             </div>&nbsp;&nbsp;&nbsp;
 
-
+                            @php
+                                use App\Models\users;
+                                $id = Session::get('id');
+                                $user = users::where('user_id',$id)->get();
+                            @endphp
                             <ul class="justify-content-end navbar nav">
                                 @if (session()->has('email'))
                                    <div class="nav-item dropdown">
-                                       <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{session()->get('name')}}</a> 
+                                   
+                                       <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{$user[0]->user_name}}</a> 
                                     {{-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a> --}}
                                     <div class="dropdown-menu">
                                     

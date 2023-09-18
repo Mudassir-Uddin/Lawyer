@@ -17,11 +17,11 @@
                     <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                         <div class="d-flex align-items-center justify-content-around mb-3">
                             <a href="index.html" class="">
-                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>lawyers_website</h3>
+                                <h3  style="color:#f0bf6a;"><i class="fa fa-user-edit me-2"></i>lawyers_website</h3>
                             </a>
                             <h3>Login User</h3>
                         </div>
-                        <form action="{{ url('/loginstore') }}" method="POST" enctype="multipart/form-data"
+                        <form  enctype="multipart/form-data"
                             id="formSubmit">
                             @csrf
 
@@ -54,8 +54,8 @@
                                 @enderror
                             </div> --}}
 
-                            <button class="btn btn-primary py-3 w-100 mb-4">Login</button>
-                            <a href="/Home">Back To Home :)</a>
+                            <button style="background-color:#c9953c; border-color:#aa9166;" class="btn btn-primary py-3 w-100 mb-4">Login</button>
+                            <a href="/"  style="color:#f0bf6a;">Back To Home :)</a>
                         </form>
                     </div>
                 </div>
@@ -81,7 +81,13 @@
                     dataType: 'json',
                     success: function(response) {
                         
-                            window.location.href = response.redirect;
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Good',
+                            text: `Why do I have this issue? ${ response.message}`,
+                        })
+                        
+                        window.location.href = response.redirect;
                         
                     },
                     error: function(xhr, status, error) {

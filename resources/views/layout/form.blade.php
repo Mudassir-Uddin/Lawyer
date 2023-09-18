@@ -34,7 +34,7 @@
     <link href="{{ url('/dashboard/css/style.css') }}" rel="stylesheet">
 </head>
 
-<body style="background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(160, 42, 42)); !important">
+<body style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(161, 113, 39)); !important">
 
 
 

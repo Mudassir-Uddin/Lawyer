@@ -7,7 +7,7 @@
         <div class="row g-4">
             <div class="col-12">
                 <div class="bg-secondary rounded h-100 p-4">
-                    <h4 class="mb-4">Category Table :</h4>
+                    <h4 class="mb-4">Services Table :</h4>
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -33,7 +33,7 @@
                                        
                                                 <td>{{ $ct->updated_at=date("Y-m-d") }}</td>
                                                 <td>
-                                            <a href="{{ url('/dashboard/edit') }}/{{ $ct->id }}"
+                                            <a href="{{ url('/dashboard/Service_edit/') }}/{{ $ct->id }}"
                                                 class="btn btn-warning">Edit</a>
                                             <button onclick="myfun({{ $ct->id }})" class="btn btn-danger">Delete</button>
                                         </td>
