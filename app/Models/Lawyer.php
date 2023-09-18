@@ -12,4 +12,9 @@ class Lawyer extends Model
     
     protected $table = "lawyere";
     protected $primaryKey = "id";
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userId');
+    }    
 }

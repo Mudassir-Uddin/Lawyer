@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+
 use App\Models\Lawyer;
 use App\Models\users;
 use Illuminate\Http\Request;
@@ -14,83 +14,7 @@ class HomeController extends Controller
     function index(){
         return view('website.Home');
     }
-    function register(){
-
-        return view('website.register');
     
-    }
-    function registerstore(Request $req){
-
-        $req->validate([
-            'name' => 'required | max:50 | min:3',
-        	'email' => 'required | max:40',
-        	'pass' => 'required | max:8',
-        	'address' => 'required ',
-        	'document' => 'required ',
-        	'QUALIFICATION' => 'required '
-        	
-        ]);
-
-        if($req->input('checks') == 1){
-
-            // DB::insert('INSERT INTO `users` (`user_name`,`email`,`password`,`img`,`address`,`role`) values (?,?,?,?,?,?)',
-            //  [$req->name,$req->email,md5($req->pass),$req->img,$req->address,0]);
-            $user = new users;
-            $user->user_name = $req->name;
-            $user->email = $req->email;
-            $user->password = md5($req->pass);
-            $user->address = $req->address;
-            $user->save();
-
-            $lastUserId = $user->user_id;
-
-            $lawyer = new Lawyer;
-            $lawyer->userid = $lastUserId;
-            $lawyer->document = "pdffile.pdf";
-            $lawyer->satisfaction = false;
-        }
-        else{
-            $user = new users;
-            $user->user_name = $req->name;
-            $user->email = $req->email;
-            $user->password = md5($req->pass);
-            $user->address = $req->address;
-            $user->save();
-
-        }
-    
-    
-        return redirect('/');
-    
-    }
-
-    function login(){
-        return view('website.login');
-    }
-    function loginstore(Request $req){
-        
-        $row = DB::select('select * from users where user_name = ? or email = ? and password = ?',[$req->name,$req->email,md5($req->pass)]); 
-        
-        if($row ){
-
-            session()->put('id',$row[0]->user_id);
-            session()->put('name',$row[0]->user_name);
-            session()->put('email',$row[0]->email);
-            session()->put('role',$row[0]->role);
-
-            return redirect('/');
-        }
-            return redirect('/login'); 
-    }
-    function logout(){
-        session()->forget('id');
-        session()->forget('name');
-        session()->forget('email');
-        session()->forget('role');
-
-        return redirect('/login');
-    }
-
     function Home(){
         return view('website.Home');
 
@@ -106,20 +30,40 @@ class HomeController extends Controller
     function contact(){
         return view('website.contact');
     }
-    function portfolio(){
-        return view('website.portfolio');
+    function lawyers(){
+        
+        $users = DB::select('select * from users u inner join lawyere l on l.userid = u.user_id where role = ? and l.satisfaction = 1 ', [3]);
+        // dd($users);
+        return view('website.lawyers',compact('users'));
 
     }
-    function service(){
-        return view('website.service');
+
+    function lawyer_details($id){
+        $users = DB::select('select * from users u inner join lawyere l on l.userid = u.user_id where role = ? and user_id = ? and l.satisfaction = 1 ', [3,$id]);
+        
+        // dd($users);
+        return view('website.lawyer_details',compact('users'));
 
     }
+    // function lawyer_edit(){
+    //     // $users = DB::select('select * from users u inner join lawyere l on l.userid = u.user_id where role = ? and user_id = ? and l.satisfaction = 1 ', [3,$id]);
+        
+    //     // dd($users);
+    //     return view('website.lawyer_edit');
+
+    // }
+    function services(){
+        // $users = DB::select('select * from users u inner join lawyere l on l.userid = u.user_id where role = ? and user_id = ? and l.satisfaction = 1 ', [3,$id]);
+        
+        // dd($users);
+        return view('website.services');
+
+    }
+
+
     function single(){
         return view('website.single');
 
     }
-    function team(){
-        return view('website.team');
-
-    }
 }
+    

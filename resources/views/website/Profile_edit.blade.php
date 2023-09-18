@@ -14,7 +14,7 @@
                             <a href="index.html" class="">
                                 <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>lawyers_website</h3>
                             </a>
-                            <h3>Create an Account</h3>
+                            <h3>Profile Edit</h3>
                         </div>
                         <form action="{{ url('/registerstore') }}" method="POST" enctype="multipart/form-data" id="loginForm">
 

@@ -22,8 +22,9 @@ class staff
 
                 return $next($request);
             }
-            redirect('/');
+            return redirect('/');
         }
-        redirect('/layout/index');
+        return redirect('/login'); 
+
     }
 }

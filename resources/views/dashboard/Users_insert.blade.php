@@ -13,7 +13,7 @@
                             <a href="index.html" class="">
                                 <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>SSAT</h3>
                             </a>
-                            <h3>Category Insert</h3>
+                            <h3>User Insert</h3>
                         </div>
                         <form action="{{ url('/dashboard/Store') }}" method="POST" enctype="multipart/form-data">
 

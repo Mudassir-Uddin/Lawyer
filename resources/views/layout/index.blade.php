@@ -18,12 +18,23 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link href="{{url('/website/lib/animate/animate.min.css')}}" rel="stylesheet">
         <link href="{{url('/website/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css">
 
         <!-- Template Stylesheet -->
         <link href="{{url('/website/css/style.css')}}" rel="stylesheet">
     </head>
 
     <body>
+        @php
+            use Illuminate\Support\Facades\Session;
+            $userRole = '';
+            if(Session::has('role')){
+                $userRole = Session::get('role');
+                
+            }
+        @endphp
+
+
         <div class="wrapper">
             <!-- Top Bar Start -->
             <div class="top-bar">
@@ -71,29 +82,55 @@
 
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto">
+                                {{-- <li class="nav-item nav-link {{ request()->is('/Home') ? 'active' : '' }}"><a href="{{ route('home') }}" >Home</a></li> --}}
                                 <a href="{{url('/Home')}}" class="nav-item nav-link active">Home</a>
-                                <a href="{{url('/about')}}" class="nav-item nav-link">About</a>
-                                <a href="{{url('/service')}}" class="nav-item nav-link">Practice</a>
-                                <a href="{{url('/team')}}" class="nav-item nav-link">Attorneys</a>
-                                <a href="{{url('/portfolio')}}" class="nav-item nav-link">Case Studies</a>
-                                <div class="nav-item dropdown">
+                                @if ($userRole != 3)
+                                    <a href="{{url('/lawyers')}}" class="nav-item nav-link">lawyer</a>
+                                @endif
+                                @if ($userRole == 3)
+                                    <a href="{{url('/service')}}" class="nav-item nav-link">Appointments</a>
+                                @endif
+                                <a href="{{url('/services')}}" class="nav-item nav-link">Services</a>
+                                {{-- <a href="{{url('/portfolio')}}" class="nav-item nav-link">Case Studies</a> --}}
+                                {{-- <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                     <div class="dropdown-menu">
                                         <a href="{{url('/blog')}}" class="dropdown-item">Blog Page</a>
                                         <a href="{{url('/single')}}" class="dropdown-item">Single Page</a>
                                     </div>
-                                </div>
-                                <a href="{{url('/contact')}}" class="nav-item nav-link">Contact</a>
+                                </div> --}}
+                                <a href="{{url('/about')}}" class="nav-item nav-link">About Us</a>
+                                {{-- <a href="{{ route('about') }}" class="nav-item nav-link {{ request()->is('about') ? 'active' : '' }}">About Us</a> --}}
+                                <a href="{{url('/contact')}}" class="nav-item nav-link">Contact Us</a>
+                                
+                                {{-- <a href="{{url('/dashboard/Service_insert')}}" class="nav-item nav-link">Insert</a> --}}
                             </div>
+                            
                             <div class="ml-auto">
-                                <a class="btn" href="https://htmlcodex.com/law-firm-website-template">Get Appointment</a>
+                                @if ($userRole == 3)
+                                    <a class="btn" href="https://htmlcodex.com/law-firm-website-template">Get Appointment</a>
+                                @endif
                             </div>&nbsp;&nbsp;&nbsp;
 
 
                             <ul class="justify-content-end navbar nav">
                                 @if (session()->has('email'))
-                                <li class="nav-item fw-bolder">{{session()->get('name')}}</li> &nbsp;&nbsp;&nbsp;&nbsp;
-                                <li class="nav-item fw-bolder" hidden>{{session()->get('email')}}</li>
+                                   <div class="nav-item dropdown">
+                                       <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{session()->get('name')}}</a> 
+                                    {{-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a> --}}
+                                    <div class="dropdown-menu">
+                                    
+                                            <a href="{{ url('/website/Profile_edit') }}" class="dropdown-item">My Profile</a>
+                                    
+                                        <a class="dropdown-item">{{session()->get('email')}}</a>
+                                        @if ($userRole == 1)
+                                            <a href="{{url('/dashboard/Admindashboard')}}" class="dropdown-item">Dashboard</a>
+                                        @endif
+                                        {{-- <a class="dropdown-item">{{session()->get('email')}}</a> --}}
+                                        {{-- <a href="{{url('/blog')}}" class="dropdown-item">Blog Page</a>
+                                        <a href="{{url('/single')}}" class="dropdown-item">Single Page</a> --}}
+                                    </div>
+                                </div>
                                 <li class="nav-item"><a href="{{url('/logout')}}" class="btn btn-danger">Logout</a></li>
                                 @else
                                 <a href="{{url('/login')}}" class="btn btn-success my-2">Login</a>
@@ -216,8 +253,8 @@
         <script src="{{url('/website/lib/easing/easing.min.js')}}"></script>
         <script src="{{url('/website/lib/owlcarousel/owl.carousel.min.js')}}"></script>
         <script src="{{url('/website/lib/isotope/isotope.pkgd.min.js')}}"></script>
-
         <!-- Template Javascript -->
         <script src="{{url('/website/js/main.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
     </body>
 </html>

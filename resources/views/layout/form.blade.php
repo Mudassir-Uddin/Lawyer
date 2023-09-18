@@ -1,24 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REGISTER-FORM</title>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <!-- Custom Fonts -->
-    <link rel="stylesheet" href="{{url('/form/vendor/fontawesome-free/css/all.min.css')}}">
-    <!-- raf -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <meta charset="utf-8">
+    <title>DarkPan - Bootstrap 5 Admin Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
         rel="stylesheet">
 
-    <!-- Custom Style -->
-    <link rel="stylesheet" href="{{url('/form/css/sb-admin-2.min.css')}}">
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ url('/dashboard/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ url('/dashboard/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ url('/dashboard/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css">
+
+    <!-- Template Stylesheet -->
+    <link href="{{ url('/dashboard/css/style.css') }}" rel="stylesheet">
 </head>
-<body>
+
+<body style="background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(160, 42, 42)); !important">
+
+
+
 
 
     @yield('myform')
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url('/dashboard/lib/chart/chart.min.js') }} "></script>
+    <script src="{{ url('/dashboard/lib/easing/easing.min.js') }} "></script>
+    <script src="{{ url('/dashboard/lib/waypoints/waypoints.min.js') }} "></script>
+    <script src="{{ url('/dashboard/lib/owlcarousel/owl.carousel.min.js') }} "></script>
+    <script src="{{ url('/dashboard/lib/tempusdominus/js/moment.min.js') }} "></script>
+    <script src="{{ url('/dashboard/lib/tempusdominus/js/moment-timezone.min.js') }} "></script>
+    <script src="{{ url('/dashboard/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }} "></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="{{ url('/dashboard/js/main.js') }}"></script>
 </body>
+
 </html>

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class login
+class index
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,6 @@ class login
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session()->has('email')){
-            return $next($request);
-        }
-        return redirect('/login');
+        return $next($request);
     }
-
 }

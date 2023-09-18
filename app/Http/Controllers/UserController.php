@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
+use App\Models\users;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
-class ServiceController extends Controller
+class UserController extends Controller
 {
-
-    function dashboard(){
-        return view('dashboard.Admindashboard');
-    }
-
     function index(){
-        $service = Service::all();
+        $service = users::all();
 
-        return view('dashboard.Services_index',compact('service'));
+        return view('dashboard.User_index',compact('service'));
     }
     function insert(){
 
-        return view('dashboard.Service_insert');
+        return view('dashboard.Users_insert');
     }
 
     function Store(Request $req){
@@ -35,7 +32,7 @@ class ServiceController extends Controller
     $imgname = time() . "__" . $imgname;
     $img->move("images/Serviceimages/",$imgname);
 
-    $st = new Service;
+    $st = new users;
     $st->name = $req->name;
     $st->img = "images/Serviceimages/$imgname";
     $st->save();
@@ -43,16 +40,15 @@ class ServiceController extends Controller
     return redirect('dashboard/Services_index');
 
     }
-    function edit($id){
-        $st = Service::find($id);
-        if($st){
-            return view('dashboard.edit', compact('st'));
+    function edit(){
+        $id = Session::get('id');
+        $user = User::Where('user_id',$id)->get();
+        if($user){
+            return view('website.Profile_edit', compact('user'));
         }
-        return redirect('/dashboard/Services_index');
-
     }
     function update(Request $req,$id){
-        $st = Service::find($id);
+        $st = users::find($id);
 
         if($req->img){
             $img = $req->img;
@@ -71,18 +67,18 @@ class ServiceController extends Controller
 
              $st->save();
 
-             return redirect('/dashboard/Services_index');
+             return redirect('/dashboard/User_index');
         }
     }
 
     function delete($id){
-        $st = Service::find($id); 
+        $st = users::find($id); 
 
         if($st){
             $st->delete();
-            return redirect('/dashboard/Services_index');
+            return redirect('/dashboard/User_index');
         }
-            return redirect('/dashboard/Services_index');
+            return redirect('/dashboard/User_index');
     }
 
 }
